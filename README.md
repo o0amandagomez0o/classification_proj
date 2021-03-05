@@ -1,0 +1,10 @@
+    - Create new repo: 'classification_proj'
+        - clone
+    - Create .gitignore that includes env.py
+        - push
+    - Create env.py file that store MySQL login credentials to obtain TELCO data.
+        - save
+        - confirm it is ignored (git status)
+    - Create README.md file to begin notating steps taken so far.
+        - save
+        - push
