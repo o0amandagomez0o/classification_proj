@@ -57,6 +57,28 @@
 6. return: the three split pandas dataframes: train/validate/test
 
 
+### Explore Data
+1. List features as either categorical or quantitative
+2. Store lists as variables: 'cat_vars' & 'quant_vars'
+3. Run Univariable Stats function from `explore.py`
+4. Analyze and document takeaways.
+5. Run Bivariable Stats function from `explore.py`
+6. Analyze and document takeaways.
+7. Run Multivariable Stats function from `explore.py`
+4. Analyze and document takeaways.
+
+
+# univar takeaways:
+- 74% of total cust base churned in past 72 months
+- Gender seems balanced, females are 51% of custs though
+- Only 16% of custs are elderly
+- Only a quarter of custs are family units
+- 30% are single parents
+- 46% are bachelor(ette)s; almost half!
+- 91% (3572) of cust base use our phone service
+    - 63% of them (2247) have multiline phones
+    - 
+
 
 # Data Dictionary
 |    column_name    |                              description                             | key                                        |  dtype  |                            value_counts                            |
