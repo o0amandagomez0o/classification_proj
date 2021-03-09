@@ -5,8 +5,8 @@
 ___
 
 [[Project Planning](#planning)]
-[[Tested Hypotheses](#tested-hypotheses)]
 [[Key Findings](#key-findings)]
+[[Tested Hypotheses](#tested-hypotheses)]
 [[Recommendations](#recommendations)]
 [[Takeaways](#takeaways)]
 [[Data Dictionary](#data-dictionary)]
@@ -35,6 +35,24 @@ We here at TELCO Communications™ take customer satisfaction to heart. We are a
 - individual modules, .py files, that hold your functions to acquire and prepare your data.
 
 ___
+# <a name="key-findings"></a>Key Findings
+### 1. Elderly churn at higher rates (40%), although they are a significantly smaller population.
+- this happens within the first few months: are they confused/need tech help?
+- as monthly charges increase, so does their churn rate.
+        
+### 2. Fiber customers are churning in droves (41%), they are a larger population, this is a problem. 
+- for what seems to be high monthly charges.
+- most within the first year.
+        
+### 3. High amount of non-billpayers (55%) churn within the first two years and steadily continue.
+- large amount non-billpayers monthly charges are low.
+    -  so are the total charges because they churn within the first 20 months.
+        
+### 4. Month-to-Month customers are also a large population churn.
+- for what seems to be high monthly charges.
+- Month-to-Month customers that stay have varying monthly charges.
+
+___
 # <a name="tested-hypotheses"></a>Tested Hypotheses 
 > ### $Hypothesis_{1}$
 > $H_{0}$: "Elderly status and churn rates are INDEPENDENT."
@@ -57,23 +75,7 @@ ___
 > $H_{a}$: "There is a relationship between customers using automatic bill pay and whether they leave TELCO."
 
 
-___
-# <a name="key-findings"></a>Key Findings
-### 1. Elderly churn at higher rates (40%), although they are a significantly smaller population.
-- this happens within the first few months: are they confused/need tech help?
-- as monthly charges increase, so does their churn rate.
-        
-### 2. Fiber customers are churning in droves (41%), they are a larger population, this is a problem. 
-- for what seems to be high monthly charges.
-- most within the first year.
-        
-### 3. High amount of non-billpayers (55%) churn within the first two years and steadily continue.
-- large amount non-billpayers monthly charges are low.
-    -  so are the total charges because they churn within the first 20 months.
-        
-### 4. Month-to-Month customers are also a large population churn.
-- for what seems to be high monthly charges.
-- Month-to-Month customers that stay have varying monthly charges.
+
 
 
 ___
