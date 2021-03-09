@@ -1,4 +1,45 @@
-    - Create new repo: 'classification_proj'
+# Classification Project
+## TELCO's Feelin' the Churn
+![alt text](agomez/Downloads/FeelChurn.jpg "Feel it")
+___
+
+[Project Planning](#planning)
+[Data Dictionary](#data-dictionary)
+
+
+# <a name="planning"></a>Planning 
+
+### Project Objectives
+- Document code, process (data acquistion, preparation, exploratory data analysis and statistical testing, modeling, and model evaluation), findings, and key takeaways in a Jupyter Notebook report.
+
+- Create modules (`acquire.py`, `prepare.py`) that make your process repeateable.
+
+- Construct a model to predict customer churn using classification techniques.
+
+
+### Business Goals
+- Find drivers for customer churn at Telco.
+
+- Construct a ML classification model that accurately predicts customer churn.
+
+- Document your process well enough to be presented or read like a report.
+
+### Deliverables
+- a Jupyter Notebook Report showing process and analysis with the goal of finding drivers for customer churn. This notebook should be commented and documented well enough to be read like a report or walked through as a presentation.
+
+- a `README.md` file containing the project description with goals, a data dictionary, project planning, instructions or an explanation of how someone else can recreate your project and findings, key findings, recommendations, and takeaways from your project.
+
+- a CSV file with customer_id, probability of churn, and prediction of churn. (1=churn, 0=not_churn)
+
+- individual modules, .py files, that hold your functions to acquire and prepare your data.
+
+
+
+
+
+
+
+- Create new repo: 'classification_proj'
         - clone
     - Create .gitignore that includes env.py
         - push
@@ -12,75 +53,8 @@
     - Create Jupyter Notebook to begin data pipeline: 'telco001'
 
 
-# Jupyter Notebook
 
-### Acquire Data
-1. Use mySQL to confirm the MySQL query I want to use.
-2. Add `get_connection` function to `acquire.py`
-    - this will connect me to the Codeup DB to pull dataset from MySQL.
-3. Create `get_telco_data` function and add to `acquire.py`
-    - this will use the query from step one to obtain `customers`table from `telco_churn` database.
-4. Add all imports necessary
-5. read telco data from MySQL into a df using `get_telco_data` function
-
-
-### Clean Data
-1. covert to numeric representation: 'total_charges', 'multiple_lines', 'online_security', 'online_backup', 'device_protection', 'tech_support', 'streaming_tv', 'streaming_movies', 'contract_type', 'payment_type'
-2. rename: 'internet_service_type', 'payment_type' values
-3. encode to binary: 'gender', 'partner', 'dependents', 'phone_service', 'paperless_billing', 'churn'
-4. dummy_encode: 'payment_type', 'internet_service_type', 'contract_type'
-5. drop: 'payment_type_id', 'internet_service_type_id', 'contract_type_id', 'payment_type': due to redundancy/new encoded cols 
-6. concat dummies to the end of df
-7. return: single cleaned dataframe
-
-
-### Prepare Data
-1. takes in `clean_telco(df)`
-2. creates column that converts tenure unit to years
-3. creates column to determine if row is a multi-line phone customer, by summing 'phone_service' + 'multiple_lines'
-4. creates column to determine if row is a single-line phone customer, by summing 'phone_service' + 'multiple_lines'
-5. creates column to determine if row is a single w/dependents customer, by summing 'partner' + 'dependents'
-6. creates column to determine if row is a single w/o dependents customer, by summing 'partner' + 'dependents'
-7. creates column to determine if row is a not single w/ dependents customer, by summing 'partner' + 'dependents'
-8. creates column to determine if row is a customer streaming media, by summing 'streaming_tv' + 'streaming_movies'
-9. creates column to determine if row is a customer taking advantage of online security or backup, by summing 'online_security' + 'online_backup'
-10. creates column to determine if row is a customer has autobill pay, by summing 'pymt_type_abt' + 'pymt_type_acc' 
-11. drops columns: 'partner', 'dependents', 'streaming_tv', 'streaming_movies', 'contract_type', 'internet_service_type', 'intserv_none'
-12. returns single clean df
-
-### Split Data
-1. train_validate_test will take one argument(df) and 
-2. run prep_telco to remove/rename/encode columns
-3. then split our data into 20/80, 
-4. then split the 80% into 30/70
-5. perform a train, validate, test split
-6. return: the three split pandas dataframes: train/validate/test
-
-
-### Explore Data
-1. List features as either categorical or quantitative
-2. Store lists as variables: 'cat_vars' & 'quant_vars'
-3. Run Univariable Stats function from `explore.py`
-4. Analyze and document takeaways.
-5. Run Bivariable Stats function from `explore.py`
-6. Analyze and document takeaways.
-7. Run Multivariable Stats function from `explore.py`
-4. Analyze and document takeaways.
-
-
-# univar takeaways:
-- 74% of total cust base churned in past 72 months
-- Gender seems balanced, females are 51% of custs though
-- Only 16% of custs are elderly
-- Only a quarter of custs are family units
-- 30% are single parents
-- 46% are bachelor(ette)s; almost half!
-- 91% (3572) of cust base use our phone service
-    - 63% of them (2247) have multiline phones
-    - 
-
-
-# Data Dictionary
+# <a name="data-dictionary"></a>Data Dictionary
 |    column_name    |                              description                             | key                                        |  dtype  |                            value_counts                            |
 |:-----------------:|:--------------------------------------------------------------------:|--------------------------------------------|:-------:|:------------------------------------------------------------------:|
 | customer_id       | TELCO customer id                                                    |                                            | object  | 3943 non-null                                                      |
@@ -114,3 +88,112 @@
 | stream_media      | tracks if TELCO internet customer streams any media (TV/movies)      | 1 = yes, 0 = no                            | int64   | 3943 non-null, 1=yes: 2804, 0=no: 1139                             |
 | online_feats      | tracks if TELCO internet customer is using online security or backup | 1 = yes, 0 = no                            | int64   | 3943 non-null, 1=yes: 2733, 0=no: 1210                             |
 | auto_billpay      | tracks if TELCO customer is signed up for Automatic Billpay          | 1 = yes, 0 = no                            | int64   | 3943 non-null, 1=yes: 1758, 0=no: 2158                             |
+| sen_int           | tracks if TELCO customer is a senior citizen with internet           | 1 = yes, 0 = no                            | int64   | 3943 non-null                                                      |
+| sen_int_techsup   | tracks if senior citizen internet customer used tech support         | 1 = yes, 0 = no                            | int64   | 3943 non-null                                                      |
+
+### <a name="split-data"></a>Split Data
+1. train_validate_test will take one argument(df) and 
+2. run prep_telco to remove/rename/encode columns
+3. then split our data into 20/80, 
+4. then split the 80% into 30/70
+5. perform a train, validate, test split
+6. return: the three split pandas dataframes: train/validate/test
+
+
+### <a name="explore-data"></a>Explore Data
+1. List features as either categorical or quantitative
+2. Store lists as variables: 'cat_vars' & 'quant_vars'
+3. Run Univariable Stats function from `explore.py`
+4. Analyze and document takeaways.
+5. Run Bivariable Stats function from `explore.py`
+6. Analyze and document takeaways.
+7. Run Multivariable Stats function from `explore.py`
+4. Analyze and document takeaways.
+
+
+# univar takeaways:
+- 74% of total cust base churned in past 72 months
+- Gender seems balanced, males are 51% of custs though
+- Only 16% of custs are elderly
+- Only a quarter of custs are family units
+- 30% are single parents
+- 46% are bachelor(ette)s; almost half!
+- 91% (3572) of cust base use our phone service
+    - 48% of them (1696) have multiline phones
+- 56% of int cust are Fiber (1734)
+    - 88% of int cust use online feats
+    - 90% of int cust stream media
+    - 57% of int cust DON'T use device protection
+    - 64% of int cust DON'T use tech support
+- 59% of custs are enrolled in paperless billing
+- 45% of custs are enrolled in auto billpay
+    - majority 33% of all cust pay using echk
+- contracts
+    - 1yr = 21%
+    - 2yr = 24%
+    - M2M = 55%
+- tenure
+    - most amount of custs are new and old
+- monthly charges: 
+    - high amt of cust pay low bills, then the rest of data is almost normal with a left skew
+    - total charges decrease exponentially
+
+
+# bivar takeaways:
+- gender doesn't seem to be a driver of churn
+- seniors churn at a higher rate (40%), although that could be a bit morbid... And they are a MUCH smaller fraction of total customers.
+    - 42% seniors w/internet churned, 7% total churn
+- Non-elderly churn at 24%
+- Families: Do they keep services for those who depend on them?
+    - 15% of family household churn
+    - 34% of single custs churn
+    - 25% of single parents churn
+- phone service has a high p-value (0.718) doesn't affect churn
+    - phone_multi_line p-value = 0.08
+    - phone_sgl_line p-value = 0.14
+- internet: has very low p-values
+    - 19% of DSL cust churn, 7% total cust
+    - 41% of Fiber cust churn, 18% total cust
+    - 15% of churned cust did not use online feats
+    - 17% of churned cust streamed media
+    - 18% of churned cust did NOT have device protection
+    - 21% of churned cust did NOT use tech support
+- billpay: has a very low p-val (2.653218x10^-46)
+    - 15% of billpayer churned, 7% of total custs: 45% total custs use billpay
+    - 36% of non billpay cust churned, 20% of total custs: 55% total cust do NOT use billpay
+    - 46% of e-pymt custs churned, 15% of total custs: 33% of total cust use echk
+    - 21% of mailed check custs churned, 5% of total custs: 23% total custs mail checks
+- contracts: 
+    - 2% of 2yr custs churn, 0.06% total, account for 24% of total custs
+    - 11% of 1yr custs churn, 2.5% total, account for 22% of total custs
+    - 43% of M2M custs churn, 24% total, account for 55% of total custs
+- charges: as monthly charges increase(threshold approx $65) a larger amt of custs drop off
+
+
+# multivar takeaways:
+- Elderly churn at higher rates, although they are a significantly smaller pop.
+    - this happens within the first few months: are they confused/need tech help?
+    - as monthly charges increase, so does their churn rate.
+        - binary/disc
+        - cat/cat
+        - null: no relationship
+        - chi2
+        
+- Fiber custs are churning in droves, they are a larger pop, this is a problem. 
+    - for what seems to be high monthly charges.
+    - most within the first year.
+        - ttest
+        
+        
+- High amt of non-billpayers churn within the first two yrs and steadily continue.
+    - large amt non-billpayers monthly charges are low.
+        -  so are the total charges b'c they churn within the first 20 months.
+        
+- M2M cust are also a large pop churn.
+    - for what seems to be high monthly charges.
+    - M2M cust that stay have varying monthly charges.
+
+
+
+
+

@@ -179,6 +179,7 @@ def plot_all_continuous_vars(train, target, quant_vars):
     p = sns.boxenplot(x="measurement", y="value", hue=target, data=melt)
     p.set(yscale="log", xlabel='')    
     plt.show()
+    
 
 def plot_violin_grid_with_color(train, target, cat_vars, quant_vars):
     cols = len(cat_vars)

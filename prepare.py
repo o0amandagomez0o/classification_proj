@@ -112,6 +112,13 @@ def prep_telco(df):
     # by summing 'pymt_type_abt' + 'pymt_type_acc' 
     df['auto_billpay'] = (df['pymt_type_abt'] + df['pymt_type_acc']).apply(lambda x: 1 if x == 1 else 0)
     
+    # creates column to determine if row is a senior w/ internet
+    # by summing 'senior_citizen' + 'intserv_dsl' + 'intserv_fiber'
+    df['sen_int'] = (df['senior_citizen'] + df['intserv_dsl']+ df['intserv_fiber']).apply(lambda x: 1 if x == 2 else 0)
+    # creates column to determine if row is a senior w/ internet uses tech support
+    # by summing 'sen_int' + 'tech_support'
+    df['sen_int_techsup'] = (df['sen_int'] + df['tech_support']).apply(lambda x: 1 if x == 2 else 0)
+    
     
     dropcols = ['partner', 'dependents', 'streaming_tv', 'streaming_movies', 'contract_type', 'internet_service_type', 'intserv_none']
     df.drop(columns= dropcols, inplace=True)
@@ -134,6 +141,32 @@ def train_validate_test(df):
     return: the three split pandas dataframes-train/validate/test
     """
     df = prep_telco(df)
+    
+#    cols = ['customer_id', 'gender', 'fam_house', 'sgl_dependents', 'sgl_no_dep', 'phone_service', 'phone_multi_line', 'phone_sgl_line', 'online_feats', 'stream_media', 'device_protection', 'paperless_billing', 'auto_billpay', 'pymt_type_echk', 'pymt_type_mchk', 'contract_1yr', 'contract_2yr', 'contract_m2m', 'multiple_lines', 'online_security', 'online_backup', 'pymt_type_abt', 'pymt_type_acc']
+#    df.drop(columns= cols, inplace=True)
+    
+    
     train_validate, test = train_test_split(df, test_size=0.2, random_state=3210, stratify=df.churn)
     train, validate = train_test_split(train_validate, train_size=0.7, random_state=3210, stratify=train_validate.churn)
     return train, validate, test
+
+
+
+def pred_telco_prep(df):
+    """
+    pred_telco_prep will take one argument(df) and 
+    run clean_telco, and prep_telco to remove/rename/encode columns
+    then remove unused features/columns to run predictions 
+    
+    return: 
+    """
+    df = prep_telco(df)
+    
+    dropcols = ['customer_id', 'gender', 'tenure', 'phone_service', 'multiple_lines', 'online_security', 'online_backup', 'device_protection', 'paperless_billing', 'total_charges', 'churn', 'pymt_type_abt', 'pymt_type_acc', 'pymt_type_echk', 'pymt_type_mchk', 'contract_1yr', 'contract_2yr', 'tenure_yrs', 'phone_multi_line', 'phone_sgl_line', 'sgl_dependents', 'sgl_no_dep', 'fam_house', 'stream_media', 'online_feats', 'sen_int_techsup']
+    df1 = df.drop(columns= dropcols, inplace=True)
+    churn_probability = pd.DataFrame({'churn_probability': logit.predict_proba(df1)[:,1]})
+    df1['prediction'] = logit.df1(telco)
+    churn_pred = pd.DataFrame(df1['prediction'])
+    customer_id = pd.DataFrame(df['customer_id'])
+    
+    return pd.concat([customer_id, churn_probability, churn_pred], axis =1)

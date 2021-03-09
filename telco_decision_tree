@@ -1,0 +1,33 @@
+digraph Tree {
+node [shape=box, style="filled, rounded", color="black", fontname=helvetica] ;
+edge [fontname=helvetica] ;
+0 [label="contract_m2m <= 0.5\ngini = 0.39\nsamples = 3943\nvalue = [2897, 1046]", fillcolor="#eeae80"] ;
+1 [label="intserv_fiber <= 0.5\ngini = 0.127\nsamples = 1769\nvalue = [1648, 121]", fillcolor="#e78a48"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="tech_support <= 0.5\ngini = 0.077\nsamples = 1228\nvalue = [1179, 49]", fillcolor="#e68641"] ;
+1 -> 2 ;
+3 [label="gini = 0.159\nsamples = 206\nvalue = [188, 18]", fillcolor="#e78d4c"] ;
+2 -> 3 ;
+4 [label="gini = 0.059\nsamples = 1022\nvalue = [991, 31]", fillcolor="#e6853f"] ;
+2 -> 4 ;
+5 [label="auto_billpay <= 0.5\ngini = 0.231\nsamples = 541\nvalue = [469, 72]", fillcolor="#e99457"] ;
+1 -> 5 ;
+6 [label="gini = 0.326\nsamples = 185\nvalue = [147, 38]", fillcolor="#eca26c"] ;
+5 -> 6 ;
+7 [label="gini = 0.173\nsamples = 356\nvalue = [322, 34]", fillcolor="#e88e4e"] ;
+5 -> 7 ;
+8 [label="intserv_fiber <= 0.5\ngini = 0.489\nsamples = 2174\nvalue = [1249, 925]", fillcolor="#f8decc"] ;
+0 -> 8 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+9 [label="tech_support <= 0.5\ngini = 0.41\nsamples = 981\nvalue = [699, 282]", fillcolor="#efb489"] ;
+8 -> 9 ;
+10 [label="gini = 0.466\nsamples = 502\nvalue = [316, 186]", fillcolor="#f4cbae"] ;
+9 -> 10 ;
+11 [label="gini = 0.321\nsamples = 479\nvalue = [383, 96]", fillcolor="#eca16b"] ;
+9 -> 11 ;
+12 [label="auto_billpay <= 0.5\ngini = 0.497\nsamples = 1193\nvalue = [550, 643]", fillcolor="#e2f1fb"] ;
+8 -> 12 ;
+13 [label="gini = 0.482\nsamples = 821\nvalue = [333, 488]", fillcolor="#c0e0f7"] ;
+12 -> 13 ;
+14 [label="gini = 0.486\nsamples = 372\nvalue = [217, 155]", fillcolor="#f8dbc6"] ;
+12 -> 14 ;
+}
