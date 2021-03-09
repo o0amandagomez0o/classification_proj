@@ -140,11 +140,7 @@ def train_validate_test(df):
     
     return: the three split pandas dataframes-train/validate/test
     """
-    df = prep_telco(df)
-    
-#    cols = ['customer_id', 'gender', 'fam_house', 'sgl_dependents', 'sgl_no_dep', 'phone_service', 'phone_multi_line', 'phone_sgl_line', 'online_feats', 'stream_media', 'device_protection', 'paperless_billing', 'auto_billpay', 'pymt_type_echk', 'pymt_type_mchk', 'contract_1yr', 'contract_2yr', 'contract_m2m', 'multiple_lines', 'online_security', 'online_backup', 'pymt_type_abt', 'pymt_type_acc']
-#    df.drop(columns= cols, inplace=True)
-    
+    df = prep_telco(df)    
     
     train_validate, test = train_test_split(df, test_size=0.2, random_state=3210, stratify=df.churn)
     train, validate = train_test_split(train_validate, train_size=0.7, random_state=3210, stratify=train_validate.churn)

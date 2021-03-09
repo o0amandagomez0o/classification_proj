@@ -1,58 +1,98 @@
-to do:
-- [ ] https://github.com/Churning-Up-the-Heat/classification-project/blob/master/readme.md
-- [ ] readme
-- [ ] add vizs to uni/bi/multi part
-- [ ] create talking points
-- [ ] time yourself
-- [ ] 
+
+# Classification Project: TELCO Data Set
 
 
-
-
-# Classification Project
-## TELCO's Feelin' the Churn
-![alt text](FeelChurn.jpg "Feel it")
 ___
 
-[Project Planning](#planning)
-
-[Data Dictionary](#data-dictionary)
+[[Project Planning](#planning)]
+[[Tested Hypotheses](#tested-hypotheses)]
+[[Key Findings](#key-findings)]
+[[Recommendations](#recommendations)]
+[[Takeaways](#takeaways)]
+[[Data Dictionary](#data-dictionary)]
+[[Workflow](#workflow)]
 
 
 # <a name="planning"></a>Planning 
 
 ### Project Objectives
-- Document code, process (data acquistion, preparation, exploratory data analysis and statistical testing, modeling, and model evaluation), findings, and key takeaways in a Jupyter Notebook report.
-
-- Create modules (`acquire.py`, `prepare.py`) that make your process repeateable.
-
-- Construct a model to predict customer churn using classification techniques.
+We here at TELCO Communications™ take customer satisfaction to heart. We are always looking to improve our customer's experience with our company. Today, we would like to explore the possible drivers of our customer churn rate. The following Jupyter Notebook offers in depth exploration, analysis, and models to project how drivers affect our customer experience and ultimate retention.
 
 
 ### Business Goals
-- Find drivers for customer churn at Telco.
-
+- Identify drivers for customer churn at TELCO.
 - Construct a ML classification model that accurately predicts customer churn.
+    + create CSV file of these predictions.
 
-- Document your process well enough to be presented or read like a report.
 
 ### Deliverables
-- a Jupyter Notebook Report showing process and analysis with the goal of finding drivers for customer churn. This notebook should be commented and documented well enough to be read like a report or walked through as a presentation.
+- a Jupyter Notebook Report showing process and analysis with the goal of finding drivers for customer churn.
 
-- a `README.md` file containing the project description with goals, a data dictionary, project planning, instructions or an explanation of how someone else can recreate your project and findings, key findings, recommendations, and takeaways from your project.
+- a `README.md` file containing the project description with goals, a data dictionary, project planning, key findings, recommendations, and takeaways from your project.
 
 - a CSV file with customer_id, probability of churn, and prediction of churn. (1=churn, 0=not_churn)
 
 - individual modules, .py files, that hold your functions to acquire and prepare your data.
 
+___
+# <a name="tested-hypotheses"></a>Tested Hypotheses 
+> ### $Hypothesis_{1}$
+> $H_{0}$: "Elderly status and churn rates are INDEPENDENT."
+>
+> $H_{a}$: "There is a relationship between elderly customers and whether they leave TELCO."
+
+> ### $Hypothesis_{2}$
+> $H_{0}$: "Monthly charges are the same for the Fiber & Non-Fiber customers."
+>
+> $H_{a}$: "Monthly charges for Fiber & Non-Fiber customers are different."
+
+> ### $Hypothesis_{3}$
+> $H_{0}$: "Contract status and churn rates are INDEPENDENT."
+>
+> $H_{a}$: "There is a relationship between contracted customers and whether they leave TELCO."
+
+> ### $Hypothesis_{4}$
+> $H_{0}$: "Having automatic bill pay and churn rates are INDEPENDENT."
+>
+> $H_{a}$: "There is a relationship between customers using automatic bill pay and whether they leave TELCO."
+
+
+___
+# <a name="key-findings"></a>Key Findings
+### 1. Elderly churn at higher rates (40%), although they are a significantly smaller population.
+- this happens within the first few months: are they confused/need tech help?
+- as monthly charges increase, so does their churn rate.
+        
+### 2. Fiber customers are churning in droves (41%), they are a larger population, this is a problem. 
+- for what seems to be high monthly charges.
+- most within the first year.
+        
+### 3. High amount of non-billpayers (55%) churn within the first two years and steadily continue.
+- large amount non-billpayers monthly charges are low.
+    -  so are the total charges because they churn within the first 20 months.
+        
+### 4. Month-to-Month customers are also a large population churn.
+- for what seems to be high monthly charges.
+- Month-to-Month customers that stay have varying monthly charges.
+
+
+___
+# <a name="recommendations"></a>Recommendations
+1. Create a Tier 3 Customer Service Representative Team that will be allocated time to reach out to our elderly clients, to offer technical support. These CSRs should be picked on they customer feedback courtesy and helpfullness scores.
+
+1. Analyze costs to provide Fiber internet customers better deals to retain during the first 12 months.
+
+1. Reexamine sales procedures to enroll customers in automatic bill pay during the intial signup.
+    - possibly intentivize them with a discount.
+1. Our non-contract customers are our largest population of churn. 
+    - Allow our customers their freedom of contracts
+    - Although, by building customer loyalty program, with incentives:
+        - customers will enjoy receiving discounts from their provider and choose to stay with a company that gives back.
 
 
 
 
-
-
-
-
+___
 # <a name="data-dictionary"></a>Data Dictionary
 |    column_name    |                              description                             | key                                        |  dtype  |                            value_counts                            |
 |:-----------------:|:--------------------------------------------------------------------:|--------------------------------------------|:-------:|:------------------------------------------------------------------:|
@@ -90,8 +130,20 @@ ___
 | sen_int           | tracks if TELCO customer is a senior citizen with internet           | 1 = yes, 0 = no                            | int64   | 3943 non-null                                                      |
 | sen_int_techsup   | tracks if senior citizen internet customer used tech support         | 1 = yes, 0 = no                            | int64   | 3943 non-null                                                      |
 
+___
+# <a name="workflow"></a>Workflow
 
-
-
-
+1. [Prep Your Repo](final_telco.ipynb#prep-your-repo)
+2. [Import](final_telco.ipynb#import)
+2. [Acquire Data](final_telco.ipynb#acquire-data)
+3. [Clean, Prep & Split Data](final_telco.ipynb#clean-prep-and-split-df)
+5. [Explore Data](final_telco.ipynb#explore-data)
+    - [Hypothesis Testing](final_telco.ipynb#hypothesis-testing)
+6. [Identify Baseline](final_telco.ipynb#identify-baseline)
+7. [Modeling](final_telco.ipynb#modeling)
+    - [Train](final_telco.ipynb#train)
+    - [Validate](final_telco.ipynb#validate)
+    - [Test](final_telco.ipynb#test)
+8. [Predict on Test Model](final_telco.ipynb#predict-on-test-model)
+9. [Export Predictions to CSV](final_telco.ipynb#export-predictions-to-csv)
 
